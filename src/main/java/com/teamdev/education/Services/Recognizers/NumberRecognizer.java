@@ -18,6 +18,7 @@ public class NumberRecognizer extends AbstractRecognizer {
         ParsePosition position = new ParsePosition(0);
         Number token = decimalFormat.parse(expression, position);
 
+        //todo: bugfix with "1.100" numbers
         return token != null ? token.toString() : null;
 
 

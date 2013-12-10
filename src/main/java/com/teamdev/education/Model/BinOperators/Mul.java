@@ -15,7 +15,6 @@ public class Mul extends BinaryOperator {
 
         BigDecimal op1 = bigDecimals.remove();
         BigDecimal op2 = bigDecimals.remove();
-
         return op1.multiply(op2);
     }
 }

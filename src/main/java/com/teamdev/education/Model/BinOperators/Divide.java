@@ -10,11 +10,12 @@ public class Divide extends BinaryOperator {
     }
 
     @Override
-    public BigDecimal execute(LinkedList<BigDecimal> bigDecimals) {
+    public BigDecimal execute(LinkedList<BigDecimal> bigDecimals) throws ArithmeticException {
 
         BigDecimal op1 = bigDecimals.remove();
         BigDecimal op2 = bigDecimals.remove();
-
+        //if (op2 == new BigDecimal(0)) throw new Exception("trying to divide by null");
         return op1.divide(op2);
+
     }
 }

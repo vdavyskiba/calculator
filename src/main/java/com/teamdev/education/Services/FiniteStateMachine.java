@@ -9,44 +9,63 @@ import java.util.HashMap;
 public class FiniteStateMachine {
 
     private final HashMap<States, States[]> matrix;
-    private final EnumMap<States, Evaluator> stackMachineEvaluators;
-    private String expression;
+    private final EnumMap<States, Evaluator> stackMachineEvaluatorMap;
+    private final String sourceExpression;
+    private String workExpression;
     private Enum<States> currentState;
 
     public FiniteStateMachine(TransMatrix transMatrix, StackMachine stackMachine, String expression){
 
         this.matrix = transMatrix.matrix;
-        this.stackMachineEvaluators = stackMachine.statesEvaluatorMap;
-        this.expression = expression;
+        this.stackMachineEvaluatorMap = stackMachine.statesEvaluatorMap;
         this.currentState = States.START;
+
+        String expr = expression + "=";
+        this.sourceExpression = expr;
+        this.workExpression = expr;
+
         this.transition();
     }
 
-    public void transition(){
+    public void transition() {
 
-        while (this.expression.length()>0){
+        boolean changed = false;
+
+        while (this.workExpression.length()>0){
+
+            changed = false;
 
             States[] accessibleStates = this.matrix.get(this.currentState);
 
             for(States state : accessibleStates){
 
-                String token = state.recognizer.recognize(this.expression);
+                String token = state.recognizer.recognize(this.workExpression);
 
                 if (token != null){
 
-                    String remainExpression = this.expression.substring(token.length());
+                    String remainExpression = this.workExpression.substring(token.length());
 
-                    //todo need to refactor: bugfix with "1.100" numbers
-                    while(remainExpression.startsWith("0")) remainExpression = remainExpression.substring(1);
+                    Evaluator evaluator = stackMachineEvaluatorMap.get(state);
 
-                    stackMachineEvaluators.get(state).evaluate(token);
+                    //catch arithmetic exceptions
+                    try {
+                        evaluator.evaluate(token);
+                    } catch (ArithmeticException e){
+                        System.out.println(e);
+                        System.out.println("Error: symbol position: [" + sourceExpression.indexOf(workExpression) + "] " + " invalid expression : [" + sourceExpression.substring(workExpression.length(), sourceExpression.indexOf(workExpression)) + "]");
+                        return;
+                    }
 
-                    this.expression = remainExpression;
+                    this.workExpression = remainExpression;
                     this.currentState = state;
+                    changed = true;
                     break;
-
-
                 }
+            }
+
+            if (!changed) {
+                System.out.println("Error: symbol position: [" + (sourceExpression.indexOf(workExpression) + 1) + "] un-allowed symbol: \"" + workExpression.charAt(0) + "\"");
+                return;
             }
         }
 

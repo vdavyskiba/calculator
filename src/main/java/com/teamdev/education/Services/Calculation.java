@@ -1,7 +1,5 @@
 package com.teamdev.education.Services;
 
-import com.teamdev.education.Model.BinOperators.BinaryOperator;
-import com.teamdev.education.Model.BinaryOperatorsSet;
 import com.teamdev.education.Model.TransMatrix;
 
 public class Calculation {

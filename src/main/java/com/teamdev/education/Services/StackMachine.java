@@ -84,12 +84,15 @@ public class StackMachine {
 
     private void evaluateFinish(){
 
-        while(operands.size() >1) {
-            executeBinOp();
-        }
+        executeAll();
         //todo: FINISH
-        System.out.println("RESULT: " + operands.peek());
-        System.out.println("stacks: " + "operands " + operands.size() +", operators " + operators.size() + ", brackets " + brackets.size());
+        System.out.println("result: " + operands.peek());
+        int numbs = operands.size();
+        int opers = operators.size();
+        int brs = brackets.size();
+
+        //System.out.println("stacks: " + "operands " + operands.size() +", operators " + operators.size() + ", brackets " + brackets.size());
+        System.out.println("test stacks: " + (numbs == 1 && opers == 0 && brs == 0 ? "ok" : "error") );
     }
 
     private void evaluateLeftBracket(){
@@ -105,10 +108,14 @@ public class StackMachine {
                 count--;
             }
         } else {
-            evaluateFinish();
+            executeAll();
         }
 
         brackets.pop();
+    }
+
+    private void executeAll(){
+        while(operands.size() >1) executeBinOp();
     }
 
     private int getBinOPsInBracket(){
