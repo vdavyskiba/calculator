@@ -6,7 +6,7 @@ public class Calculation {
 
     public Calculation(String expression, iOnResult onResult) {
 
-        new FiniteStateMachine(new TransMatrix(), new StackMachine(onResult), expression);
+        new StateMachine(new TransMatrix(), new StackMachine(onResult), expression);
 
     }
 

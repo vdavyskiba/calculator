@@ -22,9 +22,9 @@ public enum States {
         this.recognizer = new StringRecognizer(symbols);
     }
 
-    private States(String symbols){
-        this.code = new String[] {symbols};
-        this.recognizer = new StringRecognizer(new String[] {symbols});
+    private States(String symbol){
+        this.code = new String[] {symbol};
+        this.recognizer = new StringRecognizer(new String[] {symbol});
     }
 
     private States(AbstractRecognizer recognizer){
