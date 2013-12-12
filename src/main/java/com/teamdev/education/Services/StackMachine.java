@@ -12,12 +12,15 @@ import java.util.Stack;
 public class StackMachine {
 
     public final EnumMap<States, Evaluator> statesEvaluatorMap;
+    private final iOnResult onResult;
 
     private Stack<BigDecimal> operands = new Stack<BigDecimal>();
     private Stack<BinaryOperator> operators = new Stack<BinaryOperator>();
     private Stack<Integer> brackets = new Stack<Integer>();
 
     public StackMachine(){
+
+        this.onResult = new ResultListener();
 
         this.statesEvaluatorMap = new EnumMap<States, Evaluator>(States.class);
 
@@ -85,15 +88,17 @@ public class StackMachine {
     private void evaluateFinish(){
 
         executeAll();
-        //todo: FINISH
-        System.out.println("result: " + operands.peek());
 
-        //test
+        BigDecimal result = operands.peek();
+
+        onResult.onResult(result);
+
+        //self stack test
         int numbs = operands.size();
         int opers = operators.size();
-        int brs = brackets.size();
+        int brkts = brackets.size();
         //System.out.println("stacks: " + "operands " + operands.size() +", operators " + operators.size() + ", brackets " + brackets.size());
-        System.out.println("test stacks: " + (numbs == 1 && opers == 0 && brs == 0 ? "ok" : "error") );
+        System.out.println("test stacks: " + (numbs == 1 && opers == 0 && brkts == 0 ? "ok" : "error") );
     }
 
     private void evaluateLeftBracket(){

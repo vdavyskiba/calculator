@@ -1,4 +1,4 @@
-package com.teamdev.education.Services.finiteStateMachine;
+package com.teamdev.education.Services;
 
 import com.teamdev.education.Model.States;
 import com.teamdev.education.Model.TransMatrix;
@@ -31,7 +31,7 @@ public class FiniteStateMachine {
 
     private void transition() {
 
-        boolean changed = false;
+        boolean changed;
 
         while (this.workExpression.length()>0){
 
@@ -65,6 +65,7 @@ public class FiniteStateMachine {
                 }
             }
 
+            //unrecognized symbol
             if (!changed) {
                 System.out.println("Error: symbol position: [" + (sourceExpression.indexOf(workExpression) + 1) + "] un-allowed symbol: \"" + workExpression.charAt(0) + "\"");
                 return;
