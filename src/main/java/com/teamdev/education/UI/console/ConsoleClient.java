@@ -1,7 +1,5 @@
 package com.teamdev.education.UI.console;
 
-import com.teamdev.education.UI.ExpressionListener;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

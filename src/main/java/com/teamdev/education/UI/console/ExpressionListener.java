@@ -1,6 +1,7 @@
-package com.teamdev.education.UI;
+package com.teamdev.education.UI.console;
 
 import com.teamdev.education.Services.Calculation;
+import com.teamdev.education.UI.console.ResultListener;
 
 public class ExpressionListener {
 

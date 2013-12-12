@@ -1,4 +1,4 @@
-package com.teamdev.education.UI;
+package com.teamdev.education.UI.console;
 
 import com.teamdev.education.Services.iOnResult;
 
