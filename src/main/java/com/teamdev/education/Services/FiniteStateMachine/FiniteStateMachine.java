@@ -1,7 +1,9 @@
-package com.teamdev.education.Services;
+package com.teamdev.education.Services.finiteStateMachine;
 
 import com.teamdev.education.Model.States;
 import com.teamdev.education.Model.TransMatrix;
+import com.teamdev.education.Services.Evaluator;
+import com.teamdev.education.Services.StackMachine;
 
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -27,7 +29,7 @@ public class FiniteStateMachine {
         this.transition();
     }
 
-    public void transition() {
+    private void transition() {
 
         boolean changed = false;
 

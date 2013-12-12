@@ -87,10 +87,11 @@ public class StackMachine {
         executeAll();
         //todo: FINISH
         System.out.println("result: " + operands.peek());
+
+        //test
         int numbs = operands.size();
         int opers = operators.size();
         int brs = brackets.size();
-
         //System.out.println("stacks: " + "operands " + operands.size() +", operators " + operators.size() + ", brackets " + brackets.size());
         System.out.println("test stacks: " + (numbs == 1 && opers == 0 && brs == 0 ? "ok" : "error") );
     }
@@ -140,8 +141,4 @@ public class StackMachine {
         for(int value : stack) sum += value;
         return sum;
     }
-}
-
-abstract class Evaluator{
-    public abstract void evaluate(String token);
 }

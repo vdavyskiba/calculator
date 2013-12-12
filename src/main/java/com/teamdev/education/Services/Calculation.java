@@ -1,6 +1,7 @@
 package com.teamdev.education.Services;
 
 import com.teamdev.education.Model.TransMatrix;
+import com.teamdev.education.Services.finiteStateMachine.FiniteStateMachine;
 
 public class Calculation {
 
