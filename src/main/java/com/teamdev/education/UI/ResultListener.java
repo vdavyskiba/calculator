@@ -1,8 +1,10 @@
-package com.teamdev.education.Services;
+package com.teamdev.education.UI;
+
+import com.teamdev.education.Services.iOnResult;
 
 import java.math.BigDecimal;
 
-public class ResultListener implements iOnResult {
+class ResultListener implements iOnResult {
     @Override
     public void onResult(BigDecimal result) {
         System.out.println("result: " + result);

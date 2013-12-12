@@ -6,7 +6,7 @@ import com.teamdev.education.Model.TransMatrix;
 import java.util.EnumMap;
 import java.util.HashMap;
 
-public class FiniteStateMachine {
+class FiniteStateMachine {
 
     private final HashMap<States, States[]> matrix;
     private final EnumMap<States, Evaluator> stackMachineEvaluatorMap;

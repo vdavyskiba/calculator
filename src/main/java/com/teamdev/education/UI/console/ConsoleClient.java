@@ -1,7 +1,6 @@
 package com.teamdev.education.UI.console;
 
 import com.teamdev.education.UI.ExpressionListener;
-import com.teamdev.education.UI.iOnExpressionInput;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +8,7 @@ import java.io.InputStreamReader;
 
 public class ConsoleClient {
 
-    private final iOnExpressionInput onExprInput;
+    private final ExpressionListener onExprInput;
     private boolean listen = true;
 
     public ConsoleClient() throws IOException {

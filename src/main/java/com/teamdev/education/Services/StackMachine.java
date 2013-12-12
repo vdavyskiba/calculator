@@ -9,7 +9,7 @@ import java.util.EnumMap;
 import java.util.LinkedList;
 import java.util.Stack;
 
-public class StackMachine {
+class StackMachine {
 
     public final EnumMap<States, Evaluator> statesEvaluatorMap;
     private final iOnResult onResult;
@@ -18,9 +18,9 @@ public class StackMachine {
     private Stack<BinaryOperator> operators = new Stack<BinaryOperator>();
     private Stack<Integer> brackets = new Stack<Integer>();
 
-    public StackMachine(){
+    public StackMachine(iOnResult onResult){
 
-        this.onResult = new ResultListener();
+        this.onResult = onResult;
 
         this.statesEvaluatorMap = new EnumMap<States, Evaluator>(States.class);
 
