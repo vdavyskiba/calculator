@@ -10,11 +10,12 @@ import java.io.InputStreamReader;
 public class ConsoleClient {
 
     private final iOnExpressionInput onExprInput;
-
+    private boolean listen = true;
 
     public ConsoleClient() throws IOException {
+
         this.onExprInput = new ExpressionListener();
-        while(true) inputString();
+        while(listen) inputString();
     }
 
     private void inputString() throws  IOException{
@@ -25,15 +26,20 @@ public class ConsoleClient {
         try {
             String expression = bufferedReader.readLine();
 
-            if (expression.equals("q")) System.exit(1);
+            if (expression.equals("q")) quit();
 
             if (expression.length() > 0){
                 onExprInput.OnExprInput(expression);
             }
 
         } catch (IOException e){
-            e.printStackTrace();
+            System.out.println(e);
         }
+    }
+
+    private void quit(){
+        listen = false;
+        System.exit(1);
     }
 
 }
